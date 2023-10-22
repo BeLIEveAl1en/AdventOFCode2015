@@ -9,7 +9,7 @@ import java.util.List;
 public class Task2 {
     public static void main(String[] args) {
         TaskHelper taskHelper = new TaskHelper();
-        List<String> sizes = taskHelper.readFile(Path.of("C:\\java\\Projects\\AdventOfCode2015\\src\\main\\resources\\com.advent.day2\\task2input.txt"));
+        List<String> sizes = taskHelper.readFile(Path.of("src/main/resources/com/advent/day2/task2input.txt"));
         System.out.println(countOfMaterial(sizes));
     }
 
@@ -25,24 +25,21 @@ public class Task2 {
                 case 0:
                     if (size.charAt(i) == 'x') {
                         state++;
-                    }
-                    else {
+                    } else {
                         l.append(size.charAt(i));
                     }
                     break;
                 case 1:
                     if (size.charAt(i) == 'x') {
                         state++;
-                    }
-                    else {
+                    } else {
                         w.append(size.charAt(i));
                     }
                     break;
                 case 2:
                     if (size.charAt(i) == 'x') {
                         state++;
-                    }
-                    else {
+                    } else {
                         h.append(size.charAt(i));
                     }
                     break;
@@ -52,19 +49,19 @@ public class Task2 {
     }
 
     private static int countOfMaterial(List<String> sizes) {
-        int l = 0;
-        int w = 0;
-        int h = 0;
+        int l;
+        int w;
+        int h;
         int count = 0;
         int[] size;
 
-        for (int i = 0; i < sizes.size(); i++){
-            size = findSizes(sizes.get(i));
+        for (String s : sizes) {
+            size = findSizes(s);
             Arrays.sort(size);
             l = size[0];
             w = size[1];
             h = size[2];
-            count += (2*l + 2*w) + l*w*h;
+            count += (2 * l + 2 * w) + l * w * h;
         }
         return count;
     }

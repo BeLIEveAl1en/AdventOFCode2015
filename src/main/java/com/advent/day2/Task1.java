@@ -8,7 +8,7 @@ import java.util.List;
 public class Task1 {
     public static void main(String[] args) {
         TaskHelper taskHelper = new TaskHelper();
-        List<String> sizes = taskHelper.readFile(Path.of("C:\\java\\Projects\\AdventOfCode2015\\src\\main\\resources\\com.advent.day2\\task2input.txt"));
+        List<String> sizes = taskHelper.readFile(Path.of("src/main/resources/com/advent/day2/task2input.txt"));
         System.out.println(countOfMaterial(sizes));
     }
 
@@ -51,24 +51,24 @@ public class Task1 {
     }
 
     private static int countOfMaterial(List<String> sizes) {
-        int l = 0;
-        int w = 0;
-        int h = 0;
+        int l;
+        int w;
+        int h;
         int count = 0;
         int[] size;
 
-        for (int i = 0; i < sizes.size(); i++){
-            size = findSizes(sizes.get(i));
+        for (String s : sizes) {
+            size = findSizes(s);
             l = size[0];
             w = size[1];
             h = size[2];
-            count += 2*l*w + 2*w*h + 2*h*l;
-            if (l*w <= w*h && l*w <= h*l)
-                count += l*w;
-            else if (w*h <= l*w && w*h <= h*l)
-                count += w*h;
-            else if (h*l <= l*w && h*l <= w*h)
-                count += l*h;
+            count += 2 * l * w + 2 * w * h + 2 * h * l;
+            if (l * w <= w * h && l * w <= h * l)
+                count += l * w;
+            else if (w * h <= l * w && w * h <= h * l)
+                count += w * h;
+            else if (h * l <= l * w && h * l <= w * h)
+                count += l * h;
         }
         return count;
     }
