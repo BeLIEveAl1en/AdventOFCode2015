@@ -2,6 +2,6 @@ package com.advent.day5;
 
 import java.util.List;
 
-public interface Criteria {
-    List<Line> meetCriteria(List<Line> lines);
+public interface Criteria<T> {
+    List<T> meetCriteria(List<T> lines);
 }
