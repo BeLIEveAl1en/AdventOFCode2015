@@ -19,7 +19,8 @@ public class UInt16 {
         this.value.clear();
         BigInteger bigIntValue = BigInteger.valueOf(value);
         for (int i = 0; i < BITS_NUMBER; i++){
-            this.value.set(i, bigIntValue.testBit(i));
+            boolean bitValue = bigIntValue.testBit(i);
+            this.value.set(i, bitValue);
         }
     }
 
@@ -48,10 +49,54 @@ public class UInt16 {
         return new UInt16(toInt(resultBitSet));
     }
 
-    private static int toInt(BitSet value){
-        if (value.length() == 0){
-            return 0;
+    public UInt16 or(UInt16 other){
+        BitSet resultBitSet = (BitSet) value.clone();
+        resultBitSet.or(other.value);
+        return new UInt16(toInt(resultBitSet));
+    }
+
+    public UInt16 not(){
+        BitSet resultBitSet = (BitSet) value.clone();
+        resultBitSet.flip(0, BITS_NUMBER);
+        return new UInt16(toInt(resultBitSet));
+    }
+
+    public UInt16 leftShift(UInt16 shift){
+        BitSet resultBitSet = new BitSet(BITS_NUMBER);
+        int intShift = shift.getValue();
+        if (intShift >= BITS_NUMBER){
+            return new UInt16(0);
         }
-        return new BigInteger(value.toByteArray()).intValue();
+        for (int i = intShift; i < BITS_NUMBER; i++) {
+            resultBitSet.set(i, this.value.get(i - intShift));
+        }
+        return new UInt16(toInt(resultBitSet));
+    }
+
+    public UInt16 rightShift(UInt16 shift){
+        BitSet resultBitSet = new BitSet(BITS_NUMBER);
+        int intShift = shift.getValue();
+        if (intShift >= BITS_NUMBER){
+            return new UInt16(0);
+        }
+        for (int i = 0; i < BITS_NUMBER - intShift; i++) {
+            resultBitSet.set(i, this.value.get(i + intShift));
+        }
+        return new UInt16(toInt(resultBitSet));
+    }
+
+    private static int toInt(BitSet value){
+        int intValue = 0;
+        for (int i = value.nextSetBit(0); i >= 0; i = value.nextSetBit(i+1)) {
+            intValue += (1 << i);
+        }
+        return intValue;
+    }
+
+    @Override
+    public String toString() {
+        return "UInt16{" +
+                "value=" + toInt(value) +
+                '}';
     }
 }
