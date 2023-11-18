@@ -12,71 +12,27 @@ public class GridOfLampTest {
     }
 
     @Test
-    public void shouldCountLampsWithTurnOnCommand1(){
-        int expected = 4;
+    public void shouldCountLampsWithTurnOnCommand(){
+        int expected = 9;
         GridOfLamps grid = new GridOfLamps(10, 10);
         grid.turnOnForRange(1, 1, 3, 3);
         Assertions.assertEquals(expected, grid.countLamps());
     }
 
     @Test
-    public void shouldCountLampsWithTurnOnCommand2(){
-        int expected = 9;
-        GridOfLamps grid = new GridOfLamps(3, 3);
-        grid.turnOnForRange(0, 0, 3, 3);
-        Assertions.assertEquals(expected, grid.countLamps());
-    }
-
-    @Test
-    public void shouldCountLampsWithTurnOnCommand3(){
-        int expected = 6;
-        GridOfLamps grid = new GridOfLamps(3, 3);
-        grid.turnOnForRange(1, 0, 3, 3);
-        Assertions.assertEquals(expected, grid.countLamps());
-    }
-
-    @Test
-    public void shouldCountLampsWithTurnOffCommand1(){
+    public void shouldCountLampsWithTurnOffCommand(){
         int expected = 0;
-        GridOfLamps grid = new GridOfLamps(3, 3);
+        GridOfLamps grid = new GridOfLamps(4, 4);
         grid.turnOnForRange(0, 0, 3, 3);
         grid.turnOffForRange(0, 0, 3, 3);
         Assertions.assertEquals(expected, grid.countLamps());
     }
 
     @Test
-    public void shouldCountLampsWithTurnOffCommand2(){
-        int expected = 0;
-        GridOfLamps grid = new GridOfLamps(3, 3);
-        grid.turnOnForRange(0, 1, 3, 3);
-        grid.turnOffForRange(0, 0, 3, 3);
-        Assertions.assertEquals(expected, grid.countLamps());
-    }
-
-    @Test
-    public void shouldCountLampsWithToggleCommand1(){
-        int expected = 3;
-        GridOfLamps grid = new GridOfLamps(3, 3);
-        grid.turnOnForRange(1, 0, 3, 3);
-        grid.toggleForRange(0,0, 3, 3);
-        Assertions.assertEquals(expected, grid.countLamps());
-    }
-
-    @Test
-    public void shouldCountLampsWithToggleCommand2(){
+    public void shouldCountLampsWithToggleCommand(){
         int expected = 9;
         GridOfLamps grid = new GridOfLamps(3, 3);
-        grid.toggleForRange(0,0, 3, 3);
-        Assertions.assertEquals(expected, grid.countLamps());
-    }
-
-
-    @Test
-    public void shouldCountLampsWithToggleCommand3(){
-        int expected = 0;
-        GridOfLamps grid = new GridOfLamps(3, 3);
-        grid.turnOnForRange(1, 1, 3, 3);
-        grid.toggleForRange(1,1, 3, 3);
+        grid.toggleForRange(0,0, 2, 2);
         Assertions.assertEquals(expected, grid.countLamps());
     }
 }

@@ -13,24 +13,24 @@ public class GridOfLamps {
     }
 
     public void turnOnForRange(int x1, int y1, int x2, int y2){
-        for (int i = 0; i < x2-x1; i++){
-            for (int j = 0; j < y2-y1; j++){
+        for (int i = 0; i < x2-x1 + 1; i++){
+            for (int j = 0; j < y2-y1 + 1; j++){
                 grid[x1 + i][y1 + j].turnOn();
             }
         }
     }
 
     public void turnOffForRange(int x1, int y1, int x2, int y2){
-        for (int i = 0; i < x2-x1; i++){
-            for (int j = 0; j < y2-y1; j++){
+        for (int i = 0; i < x2-x1 + 1; i++){
+            for (int j = 0; j < y2-y1 + 1; j++){
                 grid[x1 + i][y1 + j].turnOff();
             }
         }
     }
 
     public void toggleForRange(int x1, int y1, int x2, int y2){
-        for (int i = 0; i < x2-x1; i++){
-            for (int j = 0; j < y2-y1; j++){
+        for (int i = 0; i < x2-x1 + 1; i++){
+            for (int j = 0; j < y2-y1 + 1; j++){
                 grid[x1 + i][y1 + j].toggle();
             }
         }

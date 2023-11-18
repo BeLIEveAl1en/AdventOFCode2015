@@ -8,20 +8,15 @@ public class Lamp {
     }
 
     public void turnOn(){
-        state = 1;
+        state++;
     }
 
     public void turnOff(){
-        state = 0;
+        state--;
     }
 
     public void toggle(){
-        if (state == 0){
-            state = 1;
-        }
-        else {
-            state = 0;
-        }
+        state += 2;
     }
 
     public int getState() {
