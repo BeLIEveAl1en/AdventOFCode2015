@@ -8,18 +8,27 @@ public class Lamp {
     }
 
     public void turnOn(){
-        state++;
+        state = 1;
     }
 
     public void turnOff(){
-        state--;
+        state = 0;
     }
 
     public void toggle(){
-        state += 2;
+        if (state == 0){
+            state = 1;
+        }
+        else {
+            state = 0;
+        }
     }
 
     public int getState() {
         return state;
+    }
+
+    protected void setState(int state) {
+        this.state = state;
     }
 }

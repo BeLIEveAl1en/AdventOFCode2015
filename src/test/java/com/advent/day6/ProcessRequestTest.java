@@ -27,12 +27,12 @@ public class ProcessRequestTest {
     @ParameterizedTest
     @CsvSource(delimiter = '|', textBlock = """
     turn on 0,0 through 1,1 | 4 | 2 | 2
-    toggle 0,0 through 2,2| 18 | 3 | 3
+    toggle 0,0 through 2,2| 9 | 3 | 3
     turn on 0,0 through 3,3|  16 | 4 | 4
     turn on 1,1 through 2,2 | 4 | 3 | 3
     turn on 0,0 through 0,0 | 1 | 3 | 3
     turn on 499,499 through 500,500 | 4 | 1000 | 1000
-    toggle 0,0 through 999,999 | 2_000_000 | 1000 | 1000
+    toggle 0,0 through 999,999 | 1_000_000 | 1000 | 1000
     turn on 0,0 through 999,999 | 1_000_000 | 1000 | 1000
     """)
     public void shouldProcessRequest(String input, int expected, int width, int height){
