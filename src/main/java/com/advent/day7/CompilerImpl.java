@@ -9,15 +9,35 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 
 public class CompilerImpl implements Compiler{
-    private final Map<String, Input> variables = new HashMap<>();
-
-
+    private final Map<String, ComputableInput> variables = new HashMap<>();
     @Override
     public void compile(List<String> commands) {
         Map<String, Operator> operatorsPerVariables = new HashMap<>();
         for (String command : commands){
             compile(command, operatorsPerVariables);
         }
+        execute(operatorsPerVariables);
+    }
+
+    private void execute(Map<String, Operator> operatorsPerVariables) {
+        executeRecursively(operatorsPerVariables);
+    }
+
+    private void executeRecursively(Map<String, Operator> operatorsPerVariables) {
+        Set<String> variables = operatorsPerVariables.keySet();
+        for (String variable : variables){
+            executeRecursively(variable, operatorsPerVariables);
+        }
+    }
+
+    private void executeRecursively(String variable, Map<String, Operator> operatorsPerVariables) {
+        Operator operator = operatorsPerVariables.get(variable);
+        for (Input argument : operator.getAllInputs()){
+            if (!argument.isReady() && argument instanceof ComputableInput){
+                executeRecursively(((ComputableInput) argument).getName(), operatorsPerVariables);
+            }
+        }
+        variables.get(variable).setValue(operator.execute());
     }
 
     @Override
